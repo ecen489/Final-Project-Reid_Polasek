@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#000000"
+        android:gravity="center_vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30sp">
+        </View>
+
+        <Button
+            android:id="@+id/playButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Play game"
+            android:layout_weight="1"
+            android:padding="12sp"
+            android:onClick="launchGame"
+            android:layout_margin="10sp"/>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/simonimage"
+            android:layout_weight="18"/>
+
+        <Button
+            android:id="@+id/reviewButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Review last game"
+            android:layout_weight="1"
+            android:padding="12sp"
+            android:onClick="launchReview"
+            android:layout_margin="10sp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30sp">
+        </View>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
