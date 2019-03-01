@@ -52,8 +52,11 @@ public class MainActivity extends AppCompatActivity {
                 else if (moveArray[i][0]==3){
                     listArray[i]=Integer.toString(i+1)+". Green ("+Integer.toString(moveArray[i][1])+")";
                 }
-                else{
+                else if (moveArray[i][0]==4){
                     listArray[i]=Integer.toString(i+1)+". Blue ("+Integer.toString(moveArray[i][1])+")";
+                }
+                else{
+                    listArray[i]="null";
                 }
             }
         }

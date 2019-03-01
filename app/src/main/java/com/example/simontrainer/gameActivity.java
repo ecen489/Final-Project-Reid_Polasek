@@ -1,6 +1,7 @@
 package com.example.simontrainer;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -23,6 +24,7 @@ public class gameActivity extends AppCompatActivity {
     Random r = new Random();
     int guessLocation = 0;
     int numFails = 0;
+    MediaPlayer player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,7 @@ public class gameActivity extends AppCompatActivity {
 
         //setup default return array
         moveArray = new int[1][2];
-        moveArray[0][0]=1;
+        moveArray[0][0]=0;
         moveArray[0][1]=0;
         intent = new Intent();
         arrayBundle = new Bundle();
@@ -51,22 +53,12 @@ public class gameActivity extends AppCompatActivity {
     }
 
     protected void logic(int buttonNo){
+        musicPlayer(buttonNo);
+
         if (!started){
             moveArray[0][0]=r.nextInt(4)+1;
             started = true;
-
-            if (moveArray[0][0]==1){
-                Toast.makeText(this,"Red Button", Toast.LENGTH_SHORT).show();
-            }
-            else if (moveArray[0][0]==2){
-                Toast.makeText(this,"Yellow Button", Toast.LENGTH_SHORT).show();
-            }
-            else if (moveArray[0][0]==3){
-                Toast.makeText(this,"Green Button", Toast.LENGTH_SHORT).show();
-            }
-            else{
-                Toast.makeText(this,"Blue Button", Toast.LENGTH_SHORT).show();
-            }
+            colorDecoder(moveArray[0][0]);
         }
         else{
             //
@@ -75,6 +67,11 @@ public class gameActivity extends AppCompatActivity {
                 if (guessLocation >= moveArray.length){
                     guessLocation = 0;
                     Toast.makeText(this,"Correct!", Toast.LENGTH_SHORT).show();
+                    //player = MediaPlayer.create(this,R.raw.aggiewarhymn);
+                    numFails = 0;
+                    score = score+1;
+                    Score scoreFragment =(Score) getSupportFragmentManager().findFragmentById(R.id.ScoreID);
+                    scoreFragment.updateScore(score);
                     newNum();
                 }
             }
@@ -85,37 +82,6 @@ public class gameActivity extends AppCompatActivity {
                 numFails = numFails + 1;
             }
         }
-        /*moveArray = new int[4][2];
-        moveArray[0][0]=1;
-        moveArray[0][1]=0;
-        moveArray[1][0]=2;
-        moveArray[1][1]=1;
-        moveArray[2][0]=3;
-        moveArray[2][1]=2;
-        moveArray[3][0]=4;
-        moveArray[3][1]=3;*/
-
-        /*if (buttonNo==1){
-            Toast.makeText(this,"Red Button", Toast.LENGTH_SHORT).show();
-        }
-        else if (buttonNo==2){
-            Toast.makeText(this,"Yellow Button", Toast.LENGTH_SHORT).show();
-        }
-        else if (buttonNo==3){
-            Toast.makeText(this,"Green Button", Toast.LENGTH_SHORT).show();
-        }
-        else{
-            Toast.makeText(this,"Blue Button", Toast.LENGTH_SHORT).show();
-        }*/
-
-        score = score+buttonNo;
-        Score scoreFragment =(Score) getSupportFragmentManager().findFragmentById(R.id.ScoreID);
-        scoreFragment.updateScore(score);
-
-        //Buttons buttonFragment = (Buttons) getSupportFragmentManager().findFragmentById(R.id.Buttons);
-        //buttonFragment.whiteout(1);
-
-        //gameFinished = true;
 
         if (numFails > 2){
             intent = new Intent();
@@ -140,22 +106,44 @@ public class gameActivity extends AppCompatActivity {
         moveArray[moveArray.length-1][0] = r.nextInt(4)+1;
 
         for (int i = 0; i<moveArray.length; i++){
-            if (moveArray[i][0]==1){
-                Toast.makeText(this,"Red Button", Toast.LENGTH_SHORT).show();
-            }
-            else if (moveArray[i][0]==2){
-                Toast.makeText(this,"Yellow Button", Toast.LENGTH_SHORT).show();
-            }
-            else if (moveArray[i][0]==3){
-                Toast.makeText(this,"Green Button", Toast.LENGTH_SHORT).show();
-            }
-            else{
-                Toast.makeText(this,"Blue Button", Toast.LENGTH_SHORT).show();
-            }
+            colorDecoder(moveArray[i][0]);
         }
     }
 
     protected void colorDecoder(int color){
+        if (color==1){
+            Toast.makeText(this,"Red Button", Toast.LENGTH_SHORT).show();
+        }
+        else if (color==2){
+            Toast.makeText(this,"Yellow Button", Toast.LENGTH_SHORT).show();
+        }
+        else if (color==3){
+            Toast.makeText(this,"Green Button", Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(this,"Blue Button", Toast.LENGTH_SHORT).show();
+        }
+    }
 
+    protected void musicPlayer(int tune){
+        if(player != null){
+            if(player.isPlaying()){
+                player.stop();
+            }
+            player.release();
+        }
+        if (tune==1){
+            player = MediaPlayer.create(this,R.raw.pianoa);//Red note
+        }
+        else if (tune==2){
+            player = MediaPlayer.create(this,R.raw.pianoc);//Yellow note
+        }
+        else if (tune==3){
+            player = MediaPlayer.create(this,R.raw.lowe);//Green note
+        }
+        else{
+            player = MediaPlayer.create(this,R.raw.pianoe);//Blue note
+        }
+        player.start();
     }
 }
