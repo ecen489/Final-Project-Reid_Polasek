@@ -29,20 +29,6 @@ public class Buttons extends Fragment {
         return inflater.inflate(R.layout.fragment_buttons, container, false);
     }
 
-    public void whiteout(int buttonNo){
-        if (buttonNo == 1){
-            //scoreNum = (TextView) getView().findViewById(R.id.scoreNum);
-            Button colorButton = (Button) getView().findViewById(R.id.redButton);
-            colorButton.setVisibility(View.INVISIBLE);
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-
-            }
-            colorButton.setVisibility(View.VISIBLE);
-        }
-    }
-
     public void setup(){
         //Set onClickListeners for buttons
         Button rB = (Button) getView().findViewById(R.id.redButton);
