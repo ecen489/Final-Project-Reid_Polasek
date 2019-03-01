@@ -14,14 +14,15 @@
         android:orientation="horizontal">
 
         <fragment
-            android:id="@+id/fragment"
+            android:id="@+id/ScoreID"
+            android:tag="scoreTag"
             android:name="com.example.simontrainer.Score"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
 
         <fragment
-            android:id="@+id/fragment2"
+            android:id="@+id/Buttons"
             android:name="com.example.simontrainer.Buttons"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

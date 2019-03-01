@@ -16,14 +16,14 @@
         tools:layout_editor_absoluteY="8dp">
 
         <fragment
-            android:id="@+id/fragment"
+            android:id="@+id/ScoreID"
             android:name="com.example.simontrainer.Score"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
         <fragment
-            android:id="@+id/fragment2"
+            android:id="@+id/Buttons"
             android:name="com.example.simontrainer.Buttons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

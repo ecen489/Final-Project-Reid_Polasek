@@ -12,7 +12,7 @@
         android:gravity="center">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/scoreText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Score:"
@@ -20,7 +20,7 @@
             android:textSize="40sp"/>
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/scoreNum"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="0"
